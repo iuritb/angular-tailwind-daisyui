@@ -5,25 +5,7 @@
   </button>
 
   <!-- Lista de Chats -->
-  <div>
-    <ul class="flex flex-col gap-2">
-      <li
-        class="flex items-center p-2 bg-primary-focus rounded-lg cursor-pointer hover:bg-primary-content"
-      >
-        <span class="flex-1">AI Chat Tool Ethics</span>
-      </li>
-      <li
-        class="flex items-center p-2 bg-primary-focus rounded-lg cursor-pointer hover:bg-primary-content"
-      >
-        <span class="flex-1">AI Chat Tool Ethics</span>
-      </li>
-      <li
-        class="flex items-center p-2 bg-primary-focus rounded-lg cursor-pointer hover:bg-primary-content"
-      >
-        <span class="flex-1">AI Chat Tool Ethics</span>
-      </li>
-    </ul>
-  </div>
+  <app-chat-history></app-chat-history>
 
   <!-- Links de Navegação -->
   <div class="mt-auto flex flex-col gap-2">
@@ -33,18 +15,11 @@
     >
       <span class="flex-1">Agente de refinamentos (RTC)</span>
     </a>
-    <a
-      href="#"
-      class="flex items-center p-2 rounded-lg hover:bg-primary-content"
-    >
-      <span class="flex-1">Parâmetros</span>
-    </a>
-    <a
-      href="#"
-      class="flex items-center p-2 rounded-lg hover:bg-primary-content"
-    >
-      <span class="flex-1">Ajuda</span>
-    </a>
+
+    <app-chat-config> </app-chat-config>
+
+    <app-chat-help></app-chat-help>
+
     <a
       href="#"
       class="flex items-center p-2 rounded-lg hover:bg-primary-content"
