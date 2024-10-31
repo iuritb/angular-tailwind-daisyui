@@ -8,15 +8,126 @@
 
   <dialog id="chat_config_modal" class="modal">
     <div class="modal-box">
-      <h3 class="text-lg font-bold">Hello!</h3>
-      <p class="py-4">Press ESC key or click the button below to close</p>
-      <div class="modal-action">
-        <form method="dialog">
-          <button class="btn">Close</button>
-        </form>
+      <div class="flex flex-row justify-between items-center">
+        <h3 class="text-lg font-bold">Parâmetros</h3>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+      <div class="flex flex-col gap-10 p-8">
+        <div>
+          <p>Top N documentos</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            class="range-xs"
+            step="25"
+          />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+        <div>
+          <p>Temperatura</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            class="range-xs"
+            step="25"
+          />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+        <div>
+          <p>Máximo de tokens</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            class="range-xs"
+            step="25"
+          />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+        <div>
+          <p>Top P</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            class="range-xs"
+            step="25"
+          />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+        <div>
+          <p>Penalidade de Frequência</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            class="range-xs"
+            step="25"
+          />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row justify-between items-center">
+        <div class="modal-action">
+          <form method="dialog">
+            <button
+              class="btn px-5 py-2.5 rounded-md border-2 border-primary90 text-primary90"
+            >
+              Cancelar
+            </button>
+          </form>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <button
+              class="btn px-5 py-2.5 rounded-md border-2 border-secondary90 text-secondary90"
+            >
+              Salvar
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </dialog>
 </div>
-
-
