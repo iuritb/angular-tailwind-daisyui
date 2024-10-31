@@ -1,0 +1,24 @@
+<div class="flex items-center justify-center h-screen bg-base-200">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-center">Login</h2>
+      <form (ngSubmit)="onLogin()">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Usuário</span>
+          </label>
+          <input type="text" [(ngModel)]="username" name="username" class="input input-bordered" required />
+        </div>
+        <div class="form-control mt-4">
+          <label class="label">
+            <span class="label-text">Senha</span>
+          </label>
+          <input type="password" [(ngModel)]="password" name="password" class="input input-bordered" required />
+        </div>
+        <div class="form-control mt-6">
+          <button type="submit" class="btn btn-primary w-full">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
