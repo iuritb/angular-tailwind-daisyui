@@ -1,3 +1,22 @@
-<a href="#" class="flex items-center p-2 rounded-lg hover:bg-primary-content">
-  <span class="flex-1">Parâmetros</span>
-</a>
+<div class="cursor-pointer">
+  <a
+    class="flex items-center p-2 rounded-lg hover:bg-primary-content"
+    onclick="chat_config_modal.showModal()"
+  >
+    <span class="flex-1">Parâmetros</span>
+  </a>
+
+  <dialog id="chat_config_modal" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Hello!</h3>
+      <p class="py-4">Press ESC key or click the button below to close</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+
