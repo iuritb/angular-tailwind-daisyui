@@ -1,0 +1,16 @@
+.button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  &--save {
+    // border: 2px solid $primary-90;
+    // color: $primary-90;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  &--cancel {
+    // border: 2px solid $secondary-90;
+    // color: $secondary-90;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+}
