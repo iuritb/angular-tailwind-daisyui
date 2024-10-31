@@ -12,6 +12,9 @@ import { ModalMenuComponent } from './components/layout/modal-menu/modal-menu.co
 import { MainContentComponent } from './components/ui/main-content/main-content.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { ChatComponent } from './components/layout/chat/chat.component';
+import { ChatHistoryComponent } from './components/ui/chat-history/chat-history.component';
+import { ChatConfigComponent } from './components/ui/chat-config/chat-config.component';
+import { ChatHelpComponent } from './components/ui/chat-help/chat-help.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ChatComponent } from './components/layout/chat/chat.component';
     MainContentComponent,
     FooterComponent,
     ChatComponent,
+    ChatHistoryComponent,
+    ChatConfigComponent,
+    ChatHelpComponent,
   ],
   imports: [
     BrowserModule,
