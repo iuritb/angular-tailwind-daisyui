@@ -15,6 +15,8 @@ import { ChatComponent } from './components/layout/chat/chat.component';
 import { ChatHistoryComponent } from './components/ui/chat-history/chat-history.component';
 import { ChatConfigComponent } from './components/ui/chat-config/chat-config.component';
 import { ChatHelpComponent } from './components/ui/chat-help/chat-help.component';
+import { BasekwonledgeCarouselComponent } from './components/ui/basekwonledge-carousel/basekwonledge-carousel.component';
+import { ChatbotIntroComponent } from './components/ui/chatbot-intro/chatbot-intro.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ChatHelpComponent } from './components/ui/chat-help/chat-help.component
     ChatHistoryComponent,
     ChatConfigComponent,
     ChatHelpComponent,
+    BasekwonledgeCarouselComponent,
+    ChatbotIntroComponent,
   ],
   imports: [
     BrowserModule,
