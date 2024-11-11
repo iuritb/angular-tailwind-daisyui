@@ -1,0 +1,39 @@
+<div
+  class="flex flex-col justify-start items-stretch text-lg max-h-full overflow-y-auto -z-50 pb-12"
+>
+  <div
+    class="flex flex-col break-words my-3"
+    *ngFor="let message of renderedMessages"
+  >
+    <!-- User's message -->
+    <p
+      class="self-end bg-gray-300 p-4 rounded-l-lg rounded-tr-lg my-3 text-right text-gray-50"
+    >
+      <span [innerHTML]="message.user_message" class="prose"></span>
+    </p>
+
+    <!-- Assistant's message or skeleton -->
+    <ng-container
+      *ngIf="message.assistant_message !== null; else skeletonTemplate"
+    >
+      <p
+        class="self-start bg-gray-50 p-4 rounded-r-lg rounded-bl-lg my-3 text-left text-gray-700"
+      >
+        <span [innerHTML]="message.assistant_message" class="prose"></span>
+      </p>
+
+      <!-- Rating component -->
+      <app-chatbot-starrating
+        [messageId]="message.messageId"
+        [rating]="message.rating"
+        (ratingChange)="onRatingChange(message.messageId, $event)"
+      ></app-chatbot-starrating>
+    </ng-container>
+
+    <ng-template #skeletonTemplate>
+      <div class="self-start bg-gray-50 p-4 rounded-r-lg rounded-bl-lg my-3">
+        <app-chat-skeleton></app-chat-skeleton>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="flex justify-center items-center">
+  <div class="inline-flex space-x-1">
+    <span
+      *ngFor="let star of stars; let i = index"
+      class="cursor-pointer text[#262626] hover:text-yellow-400"
+      [ngClass]="{ 'text-yellow-400': i < rating }"
+      (click)="rate(i + 1)"
+    >
+    <i class="icon icon-star"></i>
+    </span>
+  </div>
+</div>

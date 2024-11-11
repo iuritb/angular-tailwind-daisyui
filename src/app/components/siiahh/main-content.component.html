@@ -1,0 +1,39 @@
+<app-navbar class="h-16 fixed top-0 left-0 w-full z-10"></app-navbar>
+
+<div class="flex min-h-screen pt-16 bg-gray-400">
+  <!-- Sidebar -->
+  <app-sidebar
+    class="main__side-bar h-[calc(100vh-64px)] overflow-y-auto pt-8 text-white fixed left-0 overflow-hidden z-10"
+    [ngClass]="{ 'w-72': isSidebarExpanded, 'w-16': !isSidebarExpanded }"
+    (chatSelected)="onChatSelected($event)"
+    (indexSelected)="onIndexSelected($event)"
+    [onchatBotLoading]="chatIsLoading"
+  ></app-sidebar>
+
+  <!-- Container Principal -->
+  <div
+    class="flex flex-1 flex-col items-center justify-between transition-all duration-300 ease-in-out bg-gray-400"
+    [ngClass]="{ 'ml-72': isSidebarExpanded, 'ml-20': !isSidebarExpanded }"
+  >
+    <!-- Conteúdo de Mensagens -->
+    <div
+      class="flex flex-col items-center justify-center flex-1 w-full max-w-[64rem] px-4 py-6 overflow-y-auto pb-8"
+    >
+      <app-chatbot-messages
+        class="w-full"
+        [chat]="selectedChat"
+        [onchatBotLoading]="chatIsLoading"
+      ></app-chatbot-messages>
+    </div>
+
+    <!-- Input de Mensagem Fixo ao Fundo -->
+    <div class="w-full px-4 fixed bottom-0 pb-2 -z-1 bg-gray-400">
+      <app-chatbot-input
+        class="pb-2 max-w-3xl"
+        [chatSelected]="selectedChat"
+        [selectedIndex]="selectedIndex"
+        (chatBotIsLoading)="onchatBotLoading($event)"
+      ></app-chatbot-input>
+    </div>
+  </div>
+</div>
