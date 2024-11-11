@@ -1,0 +1,51 @@
+<div class="flex flex-col items-center p-4">
+  <!-- Input com evento de clique -->
+  <input
+    type="text"
+    class="input input-bordered w-full max-w-xs"
+    placeholder="Clique aqui para disparar o alerta"
+    (click)="mostrarAlerta()"
+  />
+
+  <!-- Alerta -->
+  <div
+    *ngIf="alertaVisivel"
+    class="mt-4 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative max-w-xs"
+    role="alert"
+  >
+    <span class="block sm:inline">Alerta disparado ao clicar no input!</span>
+    <button (click)="fecharAlerta()" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <title>Close</title>
+        <path d="M14.348 5.652a.5.5 0 0 0-.707 0L10 9.293 6.354 5.646a.5.5 0 1 0-.708.708l3.647 3.646-3.646 3.647a.5.5 0 0 0 .708.707L10 10.707l3.646 3.646a.5.5 0 0 0 .707-.707l-3.647-3.647 3.647-3.646a.5.5 0 0 0 0-.707z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-exemplo-alerta',
+  templateUrl: './exemplo-alerta.component.html',
+  styleUrls: ['./exemplo-alerta.component.css']
+})
+export class ExemploAlertaComponent {
+  alertaVisivel: boolean = false;
+
+  // Método para exibir o alerta
+  mostrarAlerta() {
+    this.alertaVisivel = true;
+
+    // Oculta o alerta automaticamente após 3 segundos
+    setTimeout(() => {
+      this.alertaVisivel = false;
+    }, 3000);
+  }
+
+  // Método para fechar o alerta manualmente
+  fecharAlerta() {
+    this.alertaVisivel = false;
+  }
+}
