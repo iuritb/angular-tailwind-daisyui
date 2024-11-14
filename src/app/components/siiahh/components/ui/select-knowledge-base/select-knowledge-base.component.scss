@@ -1,0 +1,23 @@
+.custom-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+
+  &__input {
+    width: 100%;
+    padding: 0.5rem .2rem 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #fff;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+
+  &__option {
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+  }
+}

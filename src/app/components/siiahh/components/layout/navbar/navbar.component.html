@@ -1,0 +1,24 @@
+<nav class="bg-[#003c4d] px-2 sm:px-6 lg:px-8 h-[6em] flex items-center">
+  <div class="flex justify-between w-full items-center">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img
+        class="h-[10em] w-auto pt-5"
+        src="assets/logo/CAIXA_SIIAH_chapada_negativa.svg"
+        alt="Caixa Econômica Federal - SIIAH"
+      />
+    </div>
+    <!-- Perfil de usuário -->
+    <div class="flex items-center space-x-4">
+      <h4 class="text-white">
+        {{ userProfile?.firstName }}
+      </h4>
+      <!-- <button
+        class="bg-secondary90 hover:bg-secondary70 text-white font-bold py-2 px-4 rounded-full"
+        (click)="logoff()"
+      >
+        Sair
+      </button> -->
+    </div>
+  </div>
+</nav>

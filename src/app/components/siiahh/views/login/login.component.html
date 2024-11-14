@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+  <div class="container mx-auto p-4 max-w-md">
+    <h1 class="text-3xl font-bold text-center text-Zinc-900 m-6">Login do Usuário</h1>
+    <form (submit)="login(); $event.preventDefault()">
+      <div class="mb-4">
+        <label for="matricula" class="block text-gray-700">Matrícula</label>
+        <input
+          type="text"
+          id="matricula"
+          [(ngModel)]="matricula"
+          name="matricula"
+          class="mt-1 p-2 w-full border rounded"
+          required
+          readonly
+        />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-gray-700">Senha</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          (input)="clearErrorMessage()"
+          name="password"
+          class="mt-1 p-2 w-full border rounded"
+          required
+          title="Senha deve conter entre 6 e 8 caracteres, incluindo letras, números e pelo menos um caractere especial"
+          maxlength="8"
+        />
+      </div>
+      <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="w-full border-2 border-customOrange text-orange-700 py-2 rounded-lg bg-transparent hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

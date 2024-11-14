@@ -7,20 +7,26 @@
     [(ngModel)]="userInput"
     (input)="adjustTextareaHeight()"
     (keydown.enter)="sendMessage()"
+    (click)="onInputClick()"
     class="flex-1 p-2 text-base outline-none bg-gray-200 resize-none placeholder-gray-500 placeholder-opacity-50"
     rows="1"
+    [ngClass]="{
+      'cursor-not-allowed bg-gray-300': blockSendMessage,
+      'bg-gray-200': !blockSendMessage
+    }"
     [placeholder]="
       selectedIndex
         ? 'Digite sua mensagem...'
         : 'Por favor, selecione Base de Conhecimento ao lado.'
     "
+    [readOnly]="blockSendMessage"
     [disabled]="!selectedIndex || isSendingMessage"
   ></textarea>
 
   <!-- Button -->
   <button
     (click)="sendMessage()"
-    [disabled]="isSendingMessage || !selectedIndex"
+    [disabled]="isSendingMessage || !selectedIndex || blockSendMessage"
     class="flex items-center justify-center p-2 ml-2 rounded-full transition-colors duration-300 hover:bg-gray-100 active:bg-gray-200"
   >
     <i

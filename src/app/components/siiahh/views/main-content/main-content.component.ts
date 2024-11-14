@@ -6,6 +6,7 @@ import { NavbarComponent } from 'src/app/components/layout/navbar/navbar.compone
 import { SidebarComponent } from 'src/app/components/layout/sidebar/sidebar.component';
 import { ChatbotInputComponent } from 'src/app/components/ui/chatbot-input/chatbot-input.component';
 import { ChatbotMessagesComponent } from 'src/app/components/ui/chatbot-messages/chatbot-messages.component';
+import { AlertComponent } from 'src/app/components/ui/alert/alert.component';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
@@ -23,15 +24,18 @@ import { MarkdownModule } from 'ngx-markdown';
     SidebarComponent,
     ChatbotMessagesComponent,
     ChatbotInputComponent,
+    AlertComponent
   ],
 })
 export class MainContentComponent {
   @ViewChild(SidebarComponent) sidebar!: SidebarComponent; // Acessa o componente Sidebar
+  @ViewChild(AlertComponent) alertComponent!: AlertComponent; 
 
   selectedChat: IChat | null = null;
   selectedIndex: string = ''; // Armazena o índice selecionado
   chatIsLoading: boolean = false;
   isSidebarExpanded: boolean = true; // Add this line
+  blockSendMessage: boolean = false;
 
   ngAfterViewInit() {
     this.sidebar.isExpanded = this.isSidebarExpanded;
@@ -40,6 +44,17 @@ export class MainContentComponent {
     this.sidebar.expansionChange.subscribe((isExpanded: boolean) => {
       this.isSidebarExpanded = isExpanded;
     });
+  }
+
+  openAlert() {
+    if(this.blockSendMessage){
+      this.alertComponent.handleAlert()
+    }
+  }
+
+  onMessageRated(isRated: boolean) {
+    console.log("input de mensagens está bloquedo por falta de rating ? ",this.blockSendMessage)
+    this.blockSendMessage = !isRated;
   }
 
   onchatBotLoading(chatIsLoading: boolean) {

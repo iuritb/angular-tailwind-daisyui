@@ -1,0 +1,83 @@
+@import '/src/styles/variables';
+
+.chat-history {
+  overflow-y: auto; // Permite rolagem caso haja muitas conversas
+
+  &__label-group {
+    display: flex;
+    flex-direction: row;
+    &--title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #fff;
+      margin-left: 16px;
+    }
+  }
+
+  &__list {
+    max-height: 25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+  &__item {
+    margin: 12px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  &__item:hover {
+    background-color: $grayscale-90;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  &__button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 12px;
+    display: flex; // Usa flexbox para alinhar o ícone e o texto lado a lado
+    align-items: center; // Alinha verticalmente
+    color: inherit;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  &__name {
+    padding: 0;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .icon {
+    margin-right: 8px; // Espaço entre o ícone e o texto
+  }
+}
+
+.custom-scrollbar{
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+}

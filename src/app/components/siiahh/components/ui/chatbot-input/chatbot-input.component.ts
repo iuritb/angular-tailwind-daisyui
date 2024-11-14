@@ -14,7 +14,6 @@ import { ChatService } from 'src/app/services/chat.service';
 import { MessageService } from 'src/app/services/message.service';
 import { IChat } from 'src/types/chats';
 import { IMessages } from 'src/types/messages';
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -37,6 +36,8 @@ import { takeUntil } from 'rxjs/operators';
 export class ChatbotInputComponent implements OnInit, OnDestroy, OnChanges {
   @Input() chatSelected: IChat | null = null;
   @Input() selectedIndex: string = '';
+  @Input() blockSendMessage: boolean = false;
+  @Output() trySendMessage = new EventEmitter<void>();
   @Output() chatBotIsLoading = new EventEmitter<boolean>();
   @Output() chatCreated = new EventEmitter<IChat>();
   @ViewChild('userInputArea') userInputArea!: ElementRef<HTMLTextAreaElement>;
@@ -79,6 +80,12 @@ export class ChatbotInputComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  onInputClick() {
+    if(this.blockSendMessage) {
+      this.trySendMessage.emit()
+    }
+  }
+
   adjustTextareaHeight(): void {
     const textarea = this.userInputArea.nativeElement;
     textarea.style.height = 'auto'; // Redefine a altura para ajustar o conteúdo atual
@@ -103,6 +110,13 @@ export class ChatbotInputComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.selectedIndex) {
       console.error(
         'Por favor, selecione uma base de conhecimento antes de enviar a mensagem.'
+      );
+      return false;
+    }
+    if (this.blockSendMessage) {
+      console.log("blockSendMessage inside validate Input => ", this.blockSendMessage)
+      console.error(
+        'Por favor atribua uma nota para a mensagem do assistente antes de enviar sua próxima mensagem '
       );
       return false;
     }

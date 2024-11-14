@@ -1,0 +1,36 @@
+@import "/src/styles/variables";
+
+.skeleton-history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  margin-bottom: 15px;
+  height: 40px;
+  background-color: $grayscale-90;
+  border-radius: 8px;
+
+  &__line {
+    width: 100%;
+    height: 10px;
+    background-color: black;
+    border-radius: 4px;
+    animation: pulse 3s infinite ease-in-out;
+    &.short {
+      margin-top: 4px;
+      width: 60%;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: $grayscale-130;
+  }
+  50% {
+    background-color: $grayscale-70;
+  }
+  100% {
+    background-color: $grayscale-130;
+  }
+}

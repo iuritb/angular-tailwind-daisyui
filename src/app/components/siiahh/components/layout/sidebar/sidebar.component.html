@@ -1,0 +1,194 @@
+<!-- Sidebar Layout -->
+<div
+  id="default-sidebar"
+  class="bg-informative130 h-full w-full flex flex-col transition-width duration-300 ease-in-out"
+  [class.w-20]="!isExpanded"
+  [class.w-72]="isExpanded"
+>
+  <!-- Header da Sidebar -->
+  <div class="flex justify-between items-center p-2 border-b border-gray-700">
+    <!-- Botão de Alternância da Sidebar -->
+    <button
+      (click)="toggleSidebar()"
+      class="flex items-center pt-2 pb-2 ms-3 rounded-lg dark:text-white hover:bg-[#003c4d] group cursor-pointer"
+    >
+      <i
+        class="icon icon-side-menu"
+        style="width: 24px; height: 24px; background-color: white"
+      ></i>
+    </button>
+  </div>
+
+  <!-- Conteúdo Principal da Sidebar -->
+  <div class="flex flex-col flex-grow overflow-hidden">
+    <!-- Menu de Navegação -->
+    <ul class="space-y-2 font-medium">
+      <li class="ml-3">
+        <button
+          (click)="handleItemClick(); handleNewChat()"
+          class="flex items-center p-2 rounded-lg dark:text-white hover:bg-[#003c4d] group cursor-pointer w-full"
+        >
+          <ng-icon
+            name="heroChatBubbleLeftEllipsis"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            style="width: 24px; height: 24px"
+          ></ng-icon>
+          <span *ngIf="isExpanded" class="flex ms-3 whitespace-nowrap"
+            >Novo chat</span
+          >
+        </button>
+      </li>
+      <!-- Agentes (RTC) -->
+      <li class="ml-3">
+        <button
+          (click)="handleItemClick(); openRtcInNemTab()"
+          class="flex items-center p-2 rounded-lg dark:text-white hover:bg-[#003c4d] group cursor-pointer w-full"
+        >
+          <ng-icon
+            name="heroUserGroup"
+            style="width: 24px; height: 24px"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          ></ng-icon>
+          <span *ngIf="isExpanded" class="flex ms-3 whitespace-nowrap"
+            >Agentes (RTC)</span
+          >
+        </button>
+      </li>
+
+      <!-- Video Indexer -->
+      <li class="ml-3">
+        <button
+          (click)="handleItemClick(); openVideoIndexerInNewTab()"
+          class="flex items-center p-2 rounded-lg dark:text-white hover:bg-[#003c4d] group cursor-pointer w-full"
+        >
+          <ng-icon
+            name="heroUsers"
+            style="width: 24px; height: 24px"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          ></ng-icon>
+          <span *ngIf="isExpanded" class="flex ms-3 whitespace-nowrap"
+            >Video Indexer</span
+          >
+        </button>
+      </li>
+    </ul>
+
+    <!-- Seções Expansíveis -->
+    <ul class="space-y-2 font-medium">
+      <!-- Bases de Conhecimento Dropdown -->
+      <li class="ml-3">
+        <button
+          (click)="handleItemClick(); toggleKnowledgeDropdown()"
+          class="flex items-center w-full p-2 rounded-lg group dark:text-white hover:bg-[#003c4d] cursor-pointer"
+        >
+          <ng-icon
+            name="heroBookOpen"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            style="width: 24px; height: 24px"
+          ></ng-icon>
+          <span
+            *ngIf="isExpanded"
+            class="flex-1 ms-3 text-left whitespace-nowrap"
+            >Bases de Conhecimento</span
+          >
+          <ng-icon
+            *ngIf="isExpanded"
+            name="heroChevronDown"
+            class="w-5 h-5"
+          ></ng-icon>
+        </button>
+        <ul
+          [ngClass]="{
+            'overflow-y-auto': isKnowledgeDropdownOpen,
+            hidden: !isKnowledgeDropdownOpen
+          }"
+          class="py-2 space-y-2 max-h-60"
+        >
+          <li *ngFor="let base of knowledgeBases">
+            <label
+              class="flex items-center w-full p-2 rounded-lg pl-11 group dark:text-white hover:bg-[#003c4d] cursor-pointer"
+            >
+              <input
+                type="radio"
+                name="knowledgeBase"
+                [(ngModel)]="selectedKnowledgeBase"
+                [value]="base"
+                (change)="expandSidebar(); onIndexSelected(base)"
+                class="mr-2"
+              />
+              <span *ngIf="isExpanded">{{ base }}</span>
+            </label>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Histórico Dropdown -->
+      <li class="ml-3">
+        <button
+          (click)="handleItemClick(); toggleHistoryDropdown()"
+          class="flex items-center w-full p-2 rounded-lg group dark:text-white hover:bg-[#003c4d] cursor-pointer"
+        >
+          <ng-icon
+            name="heroClock"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            style="width: 24px; height: 24px"
+          ></ng-icon>
+          <span
+            *ngIf="isExpanded"
+            class="flex-1 ms-3 text-left whitespace-nowrap"
+            >Meus Chats</span
+          >
+          <ng-icon
+            *ngIf="isExpanded"
+            name="heroChevronDown"
+            class="w-5 h-5"
+          ></ng-icon>
+        </button>
+
+        <ul
+          [ngClass]="{
+            'overflow-y-auto': isHistoryDropdownOpen,
+            hidden: !isHistoryDropdownOpen
+          }"
+          class="py-2 space-y-2 max-h-60"
+        >
+          <li
+            *ngIf="chats.length === 0"
+            class="flex items-center w-full p-2 rounded-lg pl-11 group dark:text-white hover:bg-[#003c4d]"
+          >
+            <span *ngIf="isExpanded">Nenhum chat encontrado</span>
+          </li>
+          <li *ngFor="let chat of chats">
+            <button
+              class="flex items-center w-full p-2 rounded-lg pl-11 group dark:text-white hover:bg-[#003c4d] cursor-pointer"
+              (click)="expandSidebar(); onChatSelected(chat)"
+            >
+              <span *ngIf="isExpanded">{{ chat.name || "Novo Chat" }}</span>
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer da Sidebar -->
+  <div class="flex-none py-4 border-t border-gray-700 overflow-hidden">
+    <ul class="space-y-2 font-medium">
+      <li class="ml-3">
+        <button
+          (click)="logout()"
+          class="flex items-center p-2 rounded-lg dark:text-white hover:bg-[#003c4d] group cursor-pointer w-full"
+        >
+          <ng-icon
+            name="heroArrowRightOnRectangle"
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            style="width: 24px; height: 24px"
+          ></ng-icon>
+          <span *ngIf="isExpanded" class="flex-1 ms-3 whitespace-nowrap"
+            >Sair</span
+          >
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

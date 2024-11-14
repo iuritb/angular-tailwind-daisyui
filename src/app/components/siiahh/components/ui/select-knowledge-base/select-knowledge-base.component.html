@@ -1,0 +1,28 @@
+<div class="custom-select">
+  <select class="custom-select__input" (change)="onSelectChange($event)">
+    <!-- Placeholder inicial que desaparece após a seleção -->
+    <option
+      *ngIf="!selectedValue"
+      class="custom-select__option"
+      value=""
+      disabled
+      selected
+    >
+      Base de conhecimento
+    </option>
+
+    <!-- Opções dinâmicas carregadas -->
+    <option
+      *ngFor="let indice of indices"
+      class="custom-select__option"
+      [value]="indice"
+      [selected]="indice === selectedValue"
+    >
+      {{ indice }}
+    </option>
+  </select>
+  <i
+    class="icon icon-plus"
+    style="width: 18px; height: 18px; background-color: white"
+  ></i>
+</div>

@@ -1,0 +1,19 @@
+<div class="chat-history">
+  <div class="chat-history__label-group">
+    <i
+      class="icon icon-history chat-history__label-group--icon"
+      style="width: 24px; height: 24px; background-color: white"
+    ></i>
+    <div class="chat-history__label-group--title">Histórico de Conversas</div>
+  </div>
+  <ul class="chat-history__list">
+    <div class="custom-scrollbar">
+      <li class="chat-history__item" *ngFor="let chat of chats">
+        <button class="chat-history__button" (click)="selectChat(chat)">
+          <span class="chat-history__name">{{ chat.name || 'Novo chat' }}</span>
+          <span class="chat-history__timestamp">{{ chat.timestamp | date:'short' }}</span>
+        </button>
+      </li>
+    </div>
+  </ul>
+</div>

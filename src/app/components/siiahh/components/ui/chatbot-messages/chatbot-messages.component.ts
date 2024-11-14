@@ -2,6 +2,8 @@ import {
   Component,
   ElementRef,
   Input,
+  Output,
+  EventEmitter,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -48,6 +50,7 @@ export class ChatbotMessagesComponent
 {
   @Input() chat: IChat | null = null;
   @Input() onchatBotLoading: boolean = false;
+  @Output() messageRated = new EventEmitter<boolean>();
   messages: IMessages[] = [];
   renderedMessages: RenderedMessage[] = [];
   private messagesSubscription!: Subscription;
@@ -144,6 +147,13 @@ export class ChatbotMessagesComponent
       this.renderedMessages.push(renderedMessage);
     }
 
+    const lastAssistantMessage = this.renderedMessages
+      .filter((m) => m.assistant_message)
+      .slice(-1)[0];
+    const isRated = lastAssistantMessage ? !!lastAssistantMessage.rating : true;
+
+    this.messageRated.emit(isRated);
+
     this.onchatBotLoading = false;
 
     // Scroll to bottom after messages are rendered
@@ -184,6 +194,21 @@ export class ChatbotMessagesComponent
       .subscribe({
         next: (response) => {
           console.log('Rating atualizado com sucesso', response);
+          const message = this.renderedMessages.find(
+            (m) => m.messageId === messageId
+          );
+          if (message) {
+            message.rating = rating;
+
+            const lastAssistantMessage = this.renderedMessages
+              .filter((m) => m.assistant_message)
+              .slice(-1)[0];
+            const isRated = lastAssistantMessage
+              ? !!lastAssistantMessage.rating
+              : true;
+
+            this.messageRated.emit(isRated);
+          }
         },
         error: (error) => {
           console.error('Erro ao atualizar o rating:', error);

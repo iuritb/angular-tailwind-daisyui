@@ -1,0 +1,21 @@
+.custom-scrollbar {
+  overflow-y: auto; /* Habilita a rolagem vertical, se necessário */
+
+  &::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo do track */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888; /* Cor do polegar */
+    border-radius: 12px; /* Bordas arredondadas */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cor do polegar ao passar o mouse */
+  }
+}
